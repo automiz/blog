@@ -84,6 +84,14 @@
             color: red;
             font-size: 0.8rem;
         }
+        #submissionResult {
+            display: none; 
+            background-color: #f9f9f9; 
+            padding: 20px; 
+            border: 1px solid #388e3c; 
+            border-radius: 5px;
+            margin-top: 20px;
+        }
     </style>
     <script>
         function showContent(section) {
@@ -197,6 +205,10 @@
                                 <input type="submit" value="Submit">
                             </div>
                         </form>
+                        <div id="submissionResult">
+                            <h3>Form Submission Result</h3>
+                            <p id="resultContent"></p>
+                        </div>
                     `;
                     break;
                 default:
@@ -242,41 +254,40 @@
 
             if (valid) {
                 const contactMethod = document.querySelector('input[name="contactMethod"]:checked')?.value || 'Not specified';
-                alert('Form submitted:\n' +
-                      'First Name: ' + document.getElementById('fname').value + '\n' +
-                      'Last Name: ' + document.getElementById('lname').value + '\n' +
-                      'Email: ' + document.getElementById('email').value + '\n' +
-                      'Phone: ' + document.getElementById('phone').value + '\n' +
-                      'Gender: ' + document.getElementById('gender').value + '\n' +
-                      'Preferred Contact Method: ' + contactMethod + '\n' +
-                      'Subscribed: ' + (document.getElementById('subscribe').checked ? 'Yes' : 'No'));
+                const resultContent = `
+                    First Name: ${document.getElementById('fname').value}<br>
+                    Last Name: ${document.getElementById('lname').value}<br>
+                    Email: ${document.getElementById('email').value}<br>
+                    Phone: ${document.getElementById('phone').value}<br>
+                    Gender: ${document.getElementById('gender').value}<br>
+                    Preferred Contact Method: ${contactMethod}<br>
+                    Subscribed: ${document.getElementById('subscribe').checked ? 'Yes' : 'No'}
+                `;
+
+                // Display the result in the div
+                document.getElementById('resultContent').innerHTML = resultContent;
+                document.getElementById('submissionResult').style.display = 'block';
             }
         });
     </script>
 </head>
 <body>
-
-<div class="sidebar">
-    <h2>Menu</h2>
-    <button onclick="showContent('')">Home</button>
-    <button onclick="showContent('webtable')">Web Table</button>
-    <button onclick="showContent('dropdown')">Dropdown</button>
-    <button onclick="showContent('datepicker')">Date Picker</button>
-    <button onclick="showContent('webform')">Web Form</button>
-    <button onclick="showContent('about')">About Us</button>
-    <p>Select an option from the left to view its content.</p>
-</div>
-
-<div class="content">
-    <div id="contentDisplay">
-        <h2>Welcome</h2>
-        <p>Select an option from the left to view the content.</p>
+    <div class="sidebar">
+        <h2>Navigation</h2>
+        <button onclick="showContent('webtable')">Web Table</button>
+        <button onclick="showContent('about')">About</button>
+        <button onclick="showContent('dropdown')">Dropdown</button>
+        <button onclick="showContent('datepicker')">Date Picker</button>
+        <button onclick="showContent('webform')">Web Form</button>
     </div>
-</div>
-
-<div class="footer">
-    <p>&copy; 2024  Demo Website. All Rights Reserved.</p>
-</div>
-
+    <div class="content">
+        <div id="contentDisplay">
+            <h2>Welcome</h2>
+            <p>Select an option from the left to view the content.</p>
+        </div>
+    </div>
+    <div class="footer">
+        <p>&copy; 2024 TS Demo Website</p>
+    </div>
 </body>
 </html>

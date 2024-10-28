@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demo Site</title>
+    <title>Demo Website</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -84,19 +84,29 @@
             color: red;
             font-size: 0.8rem;
         }
-        #submissionResult {
-            display: none; 
-            background-color: #f9f9f9; 
-            padding: 20px; 
-            border: 1px solid #388e3c; 
-            border-radius: 5px;
+        .submission-result {
             margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #388e3c;
+            background-color: #e8f5e9;
         }
     </style>
     <script>
         function showContent(section) {
             const contentDiv = document.getElementById('contentDisplay');
             switch (section) {
+                case 'home':
+                    contentDiv.innerHTML = `
+                        <h2>Welcome to Our Website</h2>
+                        <p>This is the home section. Here you can find the latest updates and features of our services.</p>
+                    `;
+                    break;
+                case 'about':
+                    contentDiv.innerHTML = `
+                        <h2>About Us</h2>
+                        <p>This is the about section. Here you can find information about us.</p>
+                    `;
+                    break;
                 case 'webtable':
                     contentDiv.innerHTML = `
                         <h2>Sample Web Table</h2>
@@ -132,9 +142,6 @@
                             </tbody>
                         </table>
                     `;
-                    break;
-                case 'about':
-                    contentDiv.innerHTML = '<h2>About Us</h2><p>This is the about section. Here you can find information about us.</p>';
                     break;
                 case 'dropdown':
                     contentDiv.innerHTML = `
@@ -192,9 +199,9 @@
                                 <label>Preferred Contact Method:</label><br>
                                 <input type="radio" id="contactEmail" name="contactMethod" value="Email" required>
                                 <label for="contactEmail">Email</label><br>
-                                <input type="radio" id="contactPhone" name="contactMethod" value="Phone">
+                                <input type="radio" id="contactPhone" name="contactMethod" value="Phone" required>
                                 <label for="contactPhone">Phone</label><br>
-                                <input type="radio" id="contactSMS" name="contactMethod" value="SMS">
+                                <input type="radio" id="contactSMS" name="contactMethod" value="SMS" required>
                                 <label for="contactSMS">SMS</label><br>
                             </div>
                             <div class="form-group">
@@ -205,10 +212,7 @@
                                 <input type="submit" value="Submit">
                             </div>
                         </form>
-                        <div id="submissionResult">
-                            <h3>Form Submission Result</h3>
-                            <p id="resultContent"></p>
-                        </div>
+                        <div id="submissionResult" class="submission-result" style="display: none;"></div>
                     `;
                     break;
                 default:
@@ -242,52 +246,57 @@
 
             // Validate email
             if (!emailPattern.test(email)) {
-                document.getElementById('emailError').textContent = 'Invalid email format.';
+                document.getElementById('emailError').textContent = 'Please enter a valid email.';
                 valid = false;
             }
 
-            // Validate phone number
+            // Validate phone
             if (!phonePattern.test(phone)) {
-                document.getElementById('phoneError').textContent = 'Phone number must be 10 digits.';
+                document.getElementById('phoneError').textContent = 'Please enter a valid 10-digit phone number.';
                 valid = false;
             }
 
             if (valid) {
-                const contactMethod = document.querySelector('input[name="contactMethod"]:checked')?.value || 'Not specified';
-                const resultContent = `
-                    First Name: ${document.getElementById('fname').value}<br>
-                    Last Name: ${document.getElementById('lname').value}<br>
-                    Email: ${document.getElementById('email').value}<br>
-                    Phone: ${document.getElementById('phone').value}<br>
-                    Gender: ${document.getElementById('gender').value}<br>
-                    Preferred Contact Method: ${contactMethod}<br>
-                    Subscribed: ${document.getElementById('subscribe').checked ? 'Yes' : 'No'}
-                `;
+                const contactMethod = document.querySelector('input[name="contactMethod"]:checked').value;
 
-                // Display the result in the div
-                document.getElementById('resultContent').innerHTML = resultContent;
                 document.getElementById('submissionResult').style.display = 'block';
+                document.getElementById('submissionResult').innerHTML = `
+                    <h3>Result:</h3>
+                    <p>First Name: ${document.getElementById('fname').value}</p>
+                    <p>Last Name: ${document.getElementById('lname').value}</p>
+                    <p>Email: ${document.getElementById('email').value}</p>
+                    <p>Phone: ${document.getElementById('phone').value}</p>
+                    <p>Gender: ${document.getElementById('gender').value}</p>
+                    <p>Preferred Contact Method: ${contactMethod}</p>
+                    <p>Subscribed: ${document.getElementById('subscribe').checked ? 'Yes' : 'No'}</p>
+                `;
             }
         });
     </script>
 </head>
 <body>
-    <div class="sidebar">
-        <h2>Navigation</h2>
-        <button onclick="showContent('webtable')">Web Table</button>
-        <button onclick="showContent('about')">About</button>
-        <button onclick="showContent('dropdown')">Dropdown</button>
-        <button onclick="showContent('datepicker')">Date Picker</button>
-        <button onclick="showContent('webform')">Web Form</button>
+
+<div class="sidebar">
+    <h2>Menu</h2>
+    <button onclick="showContent('home')">Home</button>
+    <button onclick="showContent('webtable')">Web Table</button>
+    <button onclick="showContent('dropdown')">Dropdown</button>
+    <button onclick="showContent('datepicker')">Date Picker</button>
+    <button onclick="showContent('webform')">Web Form</button>
+    <button onclick="showContent('about')">About Us</button>
+    <p>Select an option from the left to view its content.</p>
+</div>
+
+<div class="content">
+    <div id="contentDisplay">
+        <h2>Welcome</h2>
+        <p>Select an option from the left to view the content.</p>
     </div>
-    <div class="content">
-        <div id="contentDisplay">
-            <h2>Welcome</h2>
-            <p>Select an option from the left to view the content.</p>
-        </div>
-    </div>
-    <div class="footer">
-        <p>&copy; 2024 For Demo Purpose ONLY</p>
-    </div>
+</div>
+
+<div class="footer">
+    <p>&copy; 2024 For Demo Purpose ONLY. All Rights Reserved.</p>
+</div>
+
 </body>
 </html>

@@ -228,33 +228,9 @@
             }
 
             if (valid) {
-                const formData = {
-                    data: [{
-                        fname: document.getElementById('fname').value,
-                        lname: document.getElementById('lname').value,
-                        email: email,
-                        phone: phone,
-                        gender: document.getElementById('gender').value
-                    }]
-                };
-
-                // Send data to the API
-                fetch("https://sheetdb.io/api/v1/zlj3fs9iclv7e", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(formData)
-                })
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById('submissionResult').style.display = 'block';
-                    document.getElementById('submissionResult').innerHTML = `<p>Form submitted successfully!</p>`;
-                })
-                .catch(error => {
-                    document.getElementById('submissionResult').style.display = 'block';
-                    document.getElementById('submissionResult').innerHTML = `<p>Error: ${error}</p>`;
-                });
+                // Display success message without sending data to the server
+                document.getElementById('submissionResult').style.display = 'block';
+                document.getElementById('submissionResult').innerHTML = `<p>Form submitted successfully!</p>`;
             }
         });
     </script>
@@ -277,7 +253,7 @@
     </div>
 
     <div class="footer">
-        <p>Footer Content</p>
+        <p>Created by Your Name | All rights reserved.</p>
     </div>
 </body>
 </html>

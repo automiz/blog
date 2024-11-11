@@ -101,12 +101,6 @@
                         <p>This is the home section. Here you can find the latest updates and features of our services.</p>
                     `;
                     break;
-                case 'about':
-                    contentDiv.innerHTML = `
-                        <h2>About Us</h2>
-                        <p>This is the about section. Here you can find information about us.</p>
-                    `;
-                    break;
                 case 'webtable':
                     contentDiv.innerHTML = `
                         <h2>Sample Web Table</h2>
@@ -128,16 +122,6 @@
                                     <td>Jane Smith</td>
                                     <td>30</td>
                                     <td>UK</td>
-                                </tr>
-                                <tr>
-                                    <td>Mike Ross</td>
-                                    <td>35</td>
-                                    <td>Canada</td>
-                                </tr>
-                                <tr>
-                                    <td>Ravi Patel</td>
-                                    <td>40</td>
-                                    <td>India</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -196,19 +180,6 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label>Preferred Contact Method:</label><br>
-                                <input type="radio" id="contactEmail" name="contactMethod" value="Email" required>
-                                <label for="contactEmail">Email</label><br>
-                                <input type="radio" id="contactPhone" name="contactMethod" value="Phone" required>
-                                <label for="contactPhone">Phone</label><br>
-                                <input type="radio" id="contactSMS" name="contactMethod" value="SMS" required>
-                                <label for="contactSMS">SMS</label><br>
-                            </div>
-                            <div class="form-group">
-                                <input type="checkbox" id="subscribe" name="subscribe">
-                                <label for="subscribe">Subscribe to Newsletter</label>
-                            </div>
-                            <div class="form-group">
                                 <input type="submit" value="Submit">
                             </div>
                         </form>
@@ -257,46 +228,51 @@
             }
 
             if (valid) {
-                const contactMethod = document.querySelector('input[name="contactMethod"]:checked').value;
+                const formData = {
+                    data: [{
+                        fname: document.getElementById('fname').value,
+                        lname: document.getElementById('lname').value,
+                        email: email,
+                        phone: phone,
+                        gender: document.getElementById('gender').value
+                    }]
+                };
 
-                document.getElementById('submissionResult').style.display = 'block';
-                document.getElementById('submissionResult').innerHTML = `
-                    <h3>Result:</h3>
-                    <p>First Name: ${document.getElementById('fname').value}</p>
-                    <p>Last Name: ${document.getElementById('lname').value}</p>
-                    <p>Email: ${document.getElementById('email').value}</p>
-                    <p>Phone: ${document.getElementById('phone').value}</p>
-                    <p>Gender: ${document.getElementById('gender').value}</p>
-                    <p>Preferred Contact Method: ${contactMethod}</p>
-                    <p>Subscribed: ${document.getElementById('subscribe').checked ? 'Yes' : 'No'}</p>
-                `;
+                // Send data to the API
+                fetch("https://sheetdb.io/api/v1/zlj3fs9iclv7e", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(formData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('submissionResult').style.display = 'block';
+                    document.getElementById('submissionResult').innerHTML = `<p>Form submitted successfully!</p>`;
+                })
+                .catch(error => {
+                    document.getElementById('submissionResult').style.display = 'block';
+                    document.getElementById('submissionResult').innerHTML = `<p>Error submitting form: ${error.message}</p>`;
+                });
             }
         });
     </script>
 </head>
-<body>
-
-<div class="sidebar">
-    <h2>Menu</h2>
-    <button onclick="showContent('home')">Home</button>
-    <button onclick="showContent('webtable')">Web Table</button>
-    <button onclick="showContent('dropdown')">Dropdown</button>
-    <button onclick="showContent('datepicker')">Date Picker</button>
-    <button onclick="showContent('webform')">Web Form</button>
-    <button onclick="showContent('about')">About Us</button>
-    <p>Select an option from the left to view its content.</p>
-</div>
-
-<div class="content">
-    <div id="contentDisplay">
-        <h2>Welcome</h2>
-        <p>Select an option from the left to view the content.</p>
+<body onload="showContent('home')">
+    <div class="sidebar">
+        <h2>Menu</h2>
+        <button onclick="showContent('home')">Home</button>
+        <button onclick="showContent('webtable')">Web Table</button>
+        <button onclick="showContent('dropdown')">Dropdown</button>
+        <button onclick="showContent('datepicker')">Date Picker</button>
+        <button onclick="showContent('webform')">Web Form</button>
     </div>
-</div>
-
-<div class="footer">
-    <p>&copy; 2024 For Demo Purpose ONLY. All Rights Reserved.</p>
-</div>
-
+    <div class="content" id="contentDisplay">
+        <!-- Content dynamically loads here based on selection -->
+    </div>
+    <div class="footer">
+        <p>&copy; 2024 Demo Website</p>
+    </div>
 </body>
 </html>

@@ -3,273 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demo Website</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            height: 100vh;
-            background: linear-gradient(135deg, #a8e063 0%, #56ab2f 100%);
-            position: relative;
-        }
-        .sidebar {
-            width: 250px;
-            background-color: #fff;
-            padding: 20px;
-            border-right: 2px solid #388e3c;
-            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-        }
-        .sidebar h2 {
-            color: #388e3c;
-            text-align: center;
-        }
-        .sidebar button {
-            width: 100%;
-            padding: 10px;
-            margin: 5px 0;
-            border: none;
-            border-radius: 5px;
-            background-color: #388e3c;
-            color: white;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .sidebar button:hover {
-            background-color: #2e7d32;
-        }
-        .content {
-            flex-grow: 1;
-            padding: 20px;
-            background-color: #fff;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-        }
-        .content h2 {
-            color: #388e3c;
-        }
-        .footer {
-            text-align: center;
-            font-size: 0.9rem;
-            color: #555;
-            padding: 10px;
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            border: 2px solid #388e3c;
-        }
-        th, td {
-            border: 1px solid #333;
-            padding: 10px;
-            text-align: center;
-        }
-        th {
-            background-color: #4caf50;
-            color: white;
-        }
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-        .form-group {
-            margin: 10px 0;
-        }
-        .error {
-            color: red;
-            font-size: 0.8rem;
-        }
-        .submission-result {
-            margin-top: 20px;
-            padding: 10px;
-            border: 1px solid #388e3c;
-            background-color: #e8f5e9;
-        }
-    </style>
-    <script>
-        function showContent(section) {
-            const contentDiv = document.getElementById('contentDisplay');
-            switch (section) {
-                case 'home':
-                    contentDiv.innerHTML = `
-                        <h2>Welcome to Our Website</h2>
-                        <p>This is the home section. Here you can find the latest updates and features of our services.</p>
-                    `;
-                    break;
-                case 'webtable':
-                    contentDiv.innerHTML = `
-                        <h2>Sample Web Table</h2>
-                        <table id="dataTable">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Age</th>
-                                    <th>Country</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>John Doe</td>
-                                    <td>25</td>
-                                    <td>USA</td>
-                                </tr>
-                                <tr>
-                                    <td>Jane Smith</td>
-                                    <td>30</td>
-                                    <td>UK</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    `;
-                    break;
-                case 'dropdown':
-                    contentDiv.innerHTML = `
-                        <h2>Dropdown Selection</h2>
-                        <label for="dropdown">Select an Option:</label>
-                        <select id="dropdown" onchange="showDropdownValue()">
-                            <option value="">Choose...</option>
-                            <option value="Option 1">Option 1</option>
-                            <option value="Option 2">Option 2</option>
-                            <option value="Option 3">Option 3</option>
-                        </select>
-                        <p id="dropdownValue">You selected: <strong></strong></p>
-                    `;
-                    break;
-                case 'datepicker':
-                    contentDiv.innerHTML = `
-                        <h2>Date Picker</h2>
-                        <label for="datePicker">Choose a Date:</label>
-                        <input type="date" id="datePicker" onchange="showDateValue()">
-                        <p id="dateValue">You selected: <strong></strong></p>
-                    `;
-                    break;
-                case 'webform':
-                    contentDiv.innerHTML = `
-                        <h2>Web Form</h2>
-                        <form id="sampleForm">
-                            <div class="form-group">
-                                <label for="fname">First Name:</label>
-                                <input type="text" id="fname" name="fname" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="lname">Last Name:</label>
-                                <input type="text" id="lname" name="lname" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email:</label>
-                                <input type="email" id="email" name="email" required>
-                                <span id="emailError" class="error"></span>
-                            </div>
-                            <div class="form-group">
-                                <label for="phone">Phone Number:</label>
-                                <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
-                                <span id="phoneError" class="error"></span>
-                            </div>
-                            <div class="form-group">
-                                <input type="submit" value="Submit">
-                            </div>
-                        </form>
-                        <div id="submissionResult" class="submission-result" style="display: none;"></div>
-                    `;
-                    break;
-                default:
-                    contentDiv.innerHTML = '<h2>Welcome</h2><p>Select an option from the left to view the content.</p>';
-            }
-        }
-
-        function showDropdownValue() {
-            const selectedValue = document.getElementById('dropdown').value;
-            document.getElementById('dropdownValue').innerHTML = `You selected: <strong>${selectedValue}</strong>`;
-        }
-
-        function showDateValue() {
-            const selectedDate = document.getElementById('datePicker').value;
-            document.getElementById('dateValue').innerHTML = `You selected: <strong>${selectedDate}</strong>`;
-        }
-
-        document.addEventListener('submit', function (event) {
-            event.preventDefault();
-
-            // Clear previous error messages
-            document.getElementById('emailError').textContent = '';
-            document.getElementById('phoneError').textContent = '';
-
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-            const fname = document.getElementById('fname').value;
-            const lname = document.getElementById('lname').value;
-            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            const phonePattern = /^[0-9]{10}$/;
-
-            let valid = true;
-
-            // Validate email
-            if (!emailPattern.test(email)) {
-                document.getElementById('emailError').textContent = 'Please enter a valid email.';
-                valid = false;
-            }
-
-            // Validate phone
-            if (!phonePattern.test(phone)) {
-                document.getElementById('phoneError').textContent = 'Please enter a valid 10-digit phone number.';
-                valid = false;
-            }
-
-            if (valid) {
-                // Make the local API call (simulated here)
-                const formData = {
-                    firstName: fname,
-                    lastName: lname,
-                    email: email,
-                    phone: phone
-                };
-
-                fetch('https://your-local-api-endpoint.com/submit-form', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(formData)
-                })
-                .then(response => response.json())
-                .then(data => {
-                    // On success, show the result message
-                    document.getElementById('submissionResult').style.display = 'block';
-                    document.getElementById('submissionResult').innerHTML = `<p>Form submitted successfully!</p>`;
-                })
-                .catch(error => {
-                    // Handle error
-                    document.getElementById('submissionResult').style.display = 'block';
-                    document.getElementById('submissionResult').innerHTML = `<p>Error submitting form: ${error.message}</p>`;
-                });
-            }
-        });
-    </script>
+    <title>Form Submission</title>
 </head>
 <body>
-    <div class="sidebar">
-        <h2>Menu</h2>
-        <button onclick="showContent('home')">Home</button>
-        <button onclick="showContent('webtable')">Web Table</button>
-        <button onclick="showContent('dropdown')">Dropdown</button>
-        <button onclick="showContent('datepicker')">Date Picker</button>
-        <button onclick="showContent('webform')">Web Form</button>
-    </div>
 
-    <div class="content">
-        <div id="contentDisplay">
-            <h2>Welcome</h2>
-            <p>Select an option from the left to view the content.</p>
-        </div>
-    </div>
+<!-- Sidebar -->
+<div id="sidebar">
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</div>
 
-    <div class="footer">
-        <p>Created by Your Name | All rights reserved.</p>
-    </div>
+<h1>Submit Your Details</h1>
+
+<!-- Web form for user data -->
+<form id="userForm">
+    <label for="fname">First Name:</label>
+    <input type="text" id="fname" name="fname" required><br><br>
+
+    <label for="lname">Last Name:</label>
+    <input type="text" id="lname" name="lname" required><br><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required><br><br>
+
+    <label for="phone">Phone:</label>
+    <input type="text" id="phone" name="phone" required><br><br>
+
+    <button type="submit">Submit</button>
+</form>
+
+<script>
+// JavaScript to handle form submission and interact with the local API
+document.getElementById("userForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent default form submission
+
+    // Collecting input values from the form
+    const fname = document.getElementById("fname").value;
+    const lname = document.getElementById("lname").value;
+    const email = document.getElementById("email").value;
+    const phone = document.getElementById("phone").value;
+
+    // Preparing the data to send to the local API
+    const formData = {
+        fname: fname,
+        lname: lname,
+        email: email,
+        phone: phone
+    };
+
+    // Make the POST request to the local API
+    fetch('http://localhost:3000/users', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+        alert('Form submitted successfully!');
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+        alert('Failed to submit the form.');
+    });
+});
+</script>
+
 </body>
 </html>

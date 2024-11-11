@@ -96,19 +96,19 @@
             const contentDiv = document.getElementById('contentDisplay');
             switch (section) {
                 case 'home':
-                    contentDiv.innerHTML = 
+                    contentDiv.innerHTML = `
                         <h2>Welcome to Our Website</h2>
                         <p>This is the home section. Here you can find the latest updates and features of our services.</p>
-                    ;
+                    `;
                     break;
                 case 'about':
-                    contentDiv.innerHTML = 
+                    contentDiv.innerHTML = `
                         <h2>About Us</h2>
                         <p>This is the about section. Here you can find information about us.</p>
-                    ;
+                    `;
                     break;
                 case 'webtable':
-                    contentDiv.innerHTML = 
+                    contentDiv.innerHTML = `
                         <h2>Sample Web Table</h2>
                         <table id="dataTable">
                             <thead>
@@ -141,10 +141,10 @@
                                 </tr>
                             </tbody>
                         </table>
-                    ;
+                    `;
                     break;
                 case 'dropdown':
-                    contentDiv.innerHTML = 
+                    contentDiv.innerHTML = `
                         <h2>Dropdown Selection</h2>
                         <label for="dropdown">Select an Option:</label>
                         <select id="dropdown" onchange="showDropdownValue()">
@@ -154,18 +154,18 @@
                             <option value="Option 3">Option 3</option>
                         </select>
                         <p id="dropdownValue">You selected: <strong></strong></p>
-                    ;
+                    `;
                     break;
                 case 'datepicker':
-                    contentDiv.innerHTML = 
+                    contentDiv.innerHTML = `
                         <h2>Date Picker</h2>
                         <label for="datePicker">Choose a Date:</label>
                         <input type="date" id="datePicker" onchange="showDateValue()">
                         <p id="dateValue">You selected: <strong></strong></p>
-                    ;
+                    `;
                     break;
                 case 'webform':
-                    contentDiv.innerHTML = 
+                    contentDiv.innerHTML = `
                         <h2>Web Form</h2>
                         <form id="sampleForm">
                             <div class="form-group">
@@ -213,7 +213,7 @@
                             </div>
                         </form>
                         <div id="submissionResult" class="submission-result" style="display: none;"></div>
-                    ;
+                    `;
                     break;
                 default:
                     contentDiv.innerHTML = '<h2>Welcome</h2><p>Select an option from the left to view the content.</p>';
@@ -222,12 +222,12 @@
 
         function showDropdownValue() {
             const selectedValue = document.getElementById('dropdown').value;
-            document.getElementById('dropdownValue').innerHTML = You selected: <strong>${selectedValue}</strong>;
+            document.getElementById('dropdownValue').innerHTML = `You selected: <strong>${selectedValue}</strong>`;
         }
 
         function showDateValue() {
             const selectedDate = document.getElementById('datePicker').value;
-            document.getElementById('dateValue').innerHTML = You selected: <strong>${selectedDate}</strong>;
+            document.getElementById('dateValue').innerHTML = `You selected: <strong>${selectedDate}</strong>`;
         }
 
         document.addEventListener('submit', function (event) {
@@ -260,7 +260,7 @@
                 const contactMethod = document.querySelector('input[name="contactMethod"]:checked').value;
 
                 document.getElementById('submissionResult').style.display = 'block';
-                document.getElementById('submissionResult').innerHTML = 
+                document.getElementById('submissionResult').innerHTML = `
                     <h3>Result:</h3>
                     <p>First Name: ${document.getElementById('fname').value}</p>
                     <p>Last Name: ${document.getElementById('lname').value}</p>
@@ -269,7 +269,7 @@
                     <p>Gender: ${document.getElementById('gender').value}</p>
                     <p>Preferred Contact Method: ${contactMethod}</p>
                     <p>Subscribed: ${document.getElementById('subscribe').checked ? 'Yes' : 'No'}</p>
-                ;
+                `;
             }
         });
     </script>

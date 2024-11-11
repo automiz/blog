@@ -253,13 +253,13 @@
                 })
                 .catch(error => {
                     document.getElementById('submissionResult').style.display = 'block';
-                    document.getElementById('submissionResult').innerHTML = `<p>Error submitting form: ${error.message}</p>`;
+                    document.getElementById('submissionResult').innerHTML = `<p>Error: ${error}</p>`;
                 });
             }
         });
     </script>
 </head>
-<body onload="showContent('home')">
+<body>
     <div class="sidebar">
         <h2>Menu</h2>
         <button onclick="showContent('home')">Home</button>
@@ -268,11 +268,16 @@
         <button onclick="showContent('datepicker')">Date Picker</button>
         <button onclick="showContent('webform')">Web Form</button>
     </div>
-    <div class="content" id="contentDisplay">
-        <!-- Content dynamically loads here based on selection -->
+
+    <div class="content">
+        <div id="contentDisplay">
+            <h2>Welcome</h2>
+            <p>Select an option from the left to view the content.</p>
+        </div>
     </div>
+
     <div class="footer">
-        <p>&copy; 2024 Demo Website</p>
+        <p>Footer Content</p>
     </div>
 </body>
 </html>

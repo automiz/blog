@@ -171,15 +171,6 @@
                                 <span id="phoneError" class="error"></span>
                             </div>
                             <div class="form-group">
-                                <label for="gender">Gender:</label>
-                                <select id="gender" name="gender" required>
-                                    <option value="">Select Gender</option>
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
-                                    <option value="other">Other</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
                                 <input type="submit" value="Submit">
                             </div>
                         </form>
@@ -210,6 +201,8 @@
 
             const email = document.getElementById('email').value;
             const phone = document.getElementById('phone').value;
+            const fname = document.getElementById('fname').value;
+            const lname = document.getElementById('lname').value;
             const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             const phonePattern = /^[0-9]{10}$/;
 
@@ -228,9 +221,32 @@
             }
 
             if (valid) {
-                // Display success message without sending data to the server
-                document.getElementById('submissionResult').style.display = 'block';
-                document.getElementById('submissionResult').innerHTML = `<p>Form submitted successfully!</p>`;
+                // Make the local API call (simulated here)
+                const formData = {
+                    firstName: fname,
+                    lastName: lname,
+                    email: email,
+                    phone: phone
+                };
+
+                fetch('https://your-local-api-endpoint.com/submit-form', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // On success, show the result message
+                    document.getElementById('submissionResult').style.display = 'block';
+                    document.getElementById('submissionResult').innerHTML = `<p>Form submitted successfully!</p>`;
+                })
+                .catch(error => {
+                    // Handle error
+                    document.getElementById('submissionResult').style.display = 'block';
+                    document.getElementById('submissionResult').innerHTML = `<p>Error submitting form: ${error.message}</p>`;
+                });
             }
         });
     </script>

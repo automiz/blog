@@ -3,386 +3,406 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NetBanking - Secure Portal</title>
+    <title>Automiz Bank - Services & Support</title>
     <style>
         :root {
-            --primary-blue: #004c8f;
-            --accent-red: #d9232d;
-            --bg-light: #f4f6f9;
-            --text-dark: #333333;
-            --border-color: #dcdcdc;
+            --hdfc-blue: #004c8f;
+            --hdfc-dark-blue: #003366;
+            --hdfc-red: #d9232d;
+            --bg-body: #f4f7f6;
+            --text-main: #333333;
+            --border-color: #e0e0e0;
         }
         body {
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: var(--bg-light);
-            color: var(--text-dark);
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
+            background-color: var(--bg-body);
+            color: var(--text-main);
         }
-        /* Top Header */
+        /* Top Navigation Header */
         header {
-            background-color: var(--primary-blue);
+            background-color: var(--hdfc-blue);
             color: white;
-            padding: 10px 20px;
+            padding: 12px 25px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 4px solid var(--accent-red);
         }
-        .logo-area {
+        .header-left {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
         }
-        .logo-area h1 {
-            margin: 0;
-            font-size: 1.5rem;
-            letter-spacing: 0.5px;
-        }
-        .user-info {
-            font-size: 0.9rem;
-            text-align: right;
-        }
-        .user-info span {
-            color: #ffeb3b;
+        .logo-box {
+            background: white;
+            color: var(--hdfc-red);
             font-weight: bold;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            border-left: 4px solid var(--hdfc-red);
+        }
+        .search-bar {
+            background: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            width: 320px;
+        }
+        .search-bar input {
+            border: none;
+            outline: none;
+            width: 100%;
+            font-size: 0.9rem;
+        }
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 0.9rem;
+        }
+        
+        /* Sub Header Nav */
+        .sub-nav {
+            background-color: var(--hdfc-dark-blue);
+            color: white;
+            display: flex;
+            gap: 25px;
+            padding: 0 25px;
+            overflow-x: auto;
+        }
+        .sub-nav button {
+            background: none;
+            border: none;
+            color: #d0e1f9;
+            padding: 12px 5px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            border-bottom: 3px solid transparent;
+        }
+        .sub-nav button:hover, .sub-nav button.active {
+            color: white;
+            border-bottom: 3px solid white;
+        }
+
+        /* Banner Header */
+        .banner {
+            background: linear-gradient(135deg, var(--hdfc-dark-blue), var(--hdfc-blue));
+            color: white;
+            padding: 30px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .banner h2 {
+            margin: 0 0 5px 0;
+            font-size: 1.8rem;
+        }
+        .banner-btn {
+            background-color: var(--hdfc-blue);
+            color: white;
+            border: 1px solid white;
+            padding: 10px 18px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .banner-btn:hover {
+            background-color: white;
+            color: var(--hdfc-blue);
         }
 
         /* Main Workspace Layout */
-        .main-container {
-            display: flex;
-            flex-grow: 1;
-            overflow: hidden;
+        .container {
+            max-width: 1200px;
+            margin: -25px auto 30px auto;
+            padding: 0 15px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 25px;
         }
 
-        /* Sidebar Menu */
-        sidebar {
-            width: 240px;
-            background-color: #ffffff;
-            border-right: 1px solid var(--border-color);
-            display: flex;
-            flex-direction: column;
-            overflow-y: auto;
+        /* Card Section Panels */
+        .card-panel {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            padding: 20px;
+            margin-bottom: 20px;
         }
-        .menu-title {
-            background-color: #eef2f7;
-            padding: 12px 15px;
-            font-weight: bold;
-            color: var(--primary-blue);
-            font-size: 0.95rem;
-            border-bottom: 1px solid var(--border-color);
-        }
-        sidebar button {
-            background: none;
-            border: none;
-            text-align: left;
-            padding: 12px 15px;
-            width: 100%;
-            cursor: pointer;
-            font-size: 0.9rem;
-            color: #444;
-            border-bottom: 1px solid #f0f0f0;
-            transition: background 0.2s, color 0.2s;
-        }
-        sidebar button:hover {
-            background-color: #eef2f7;
-            color: var(--primary-blue);
-            font-weight: bold;
-        }
-
-        /* Content Area */
-        .content {
-            flex-grow: 1;
-            padding: 25px;
-            overflow-y: auto;
-            background-color: #ffffff;
-            margin: 15px;
-            border-radius: 4px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
-        h2 {
-            color: var(--primary-blue);
+        .card-panel h3 {
+            color: var(--hdfc-blue);
             margin-top: 0;
-            border-bottom: 2px solid #eef2f7;
-            padding-bottom: 8px;
-            font-size: 1.3rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
         }
 
-        /* Tables */
+        /* Service Accordion Grid */
+        .service-section {
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 0;
+        }
+        .service-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--hdfc-dark-blue);
+        }
+        .service-links {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 12px;
+            padding-left: 5px;
+        }
+        .service-links a {
+            color: var(--hdfc-blue);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .service-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Quick Links Sidebar */
+        .quick-links-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .quick-links-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            color: var(--hdfc-blue);
+            font-size: 0.95rem;
+        }
+        .quick-links-list li:hover {
+            color: var(--hdfc-dark-blue);
+            font-weight: bold;
+        }
+
+        /* Dynamic Workspace View Container */
+        .dynamic-view {
+            padding: 15px;
+            background: #fafbfc;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            margin-top: 15px;
+        }
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 15px;
+            margin-top: 10px;
         }
         th, td {
             border: 1px solid var(--border-color);
-            padding: 10px 12px;
+            padding: 8px 12px;
             text-align: left;
             font-size: 0.9rem;
         }
         th {
-            background-color: var(--primary-blue);
+            background-color: var(--hdfc-blue);
             color: white;
         }
-        tr:nth-child(even) {
-            background-color: #f9fbfd;
-        }
-
-        /* Forms & Inputs */
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
         .form-group label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 4px;
             font-weight: bold;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
         .form-group input, .form-group select {
             width: 100%;
-            max-width: 400px;
-            padding: 8px 10px;
+            padding: 8px;
             border: 1px solid var(--border-color);
-            border-radius: 3px;
+            border-radius: 4px;
             box-sizing: border-box;
-            font-size: 0.9rem;
         }
-        .btn-submit {
-            background-color: var(--primary-blue);
+        .btn-action {
+            background-color: var(--hdfc-blue);
             color: white;
             border: none;
-            padding: 10px 20px;
-            font-weight: bold;
-            border-radius: 3px;
+            padding: 8px 16px;
+            border-radius: 4px;
             cursor: pointer;
         }
-        .btn-submit:hover {
-            background-color: #003366;
-        }
-        .result-box {
-            margin-top: 20px;
-            padding: 15px;
-            background-color: #eef9f0;
-            border: 1px solid #c3e6cb;
-            color: #155724;
-            border-radius: 4px;
-        }
-        .error-text {
-            color: var(--accent-red);
-            font-size: 0.8rem;
-            margin-top: 3px;
-            display: block;
-        }
-
-        /* Footer */
-        footer {
-            background-color: #333333;
-            color: #cccccc;
-            text-align: center;
-            font-size: 0.8rem;
-            padding: 8px;
+        .btn-action:hover {
+            background-color: var(--hdfc-dark-blue);
         }
     </style>
     <script>
-        function loadModule(section) {
-            const container = document.getElementById('workspace');
-            switch(section) {
-                case 'dashboard':
-                    container.innerHTML = `
-                        <h2>Welcome to NetBanking Portal</h2>
-                        <p>Last Login: <strong>Today, 10:14 AM IST</strong> | IP Address: <strong>192.168.1.45</strong></p>
-                        <div style="display: flex; gap: 20px; margin-top: 20px;">
-                            <div style="flex: 1; background: #eef2f7; padding: 15px; border-radius: 4px; border-left: 4px solid var(--primary-blue);">
-                                <h4>Savings Account Balance</h4>
-                                <p style="font-size: 1.4rem; font-weight: bold; color: var(--primary-blue);">&#36;14,550.00</p>
-                            </div>
-                            <div style="flex: 1; background: #eef2f7; padding: 15px; border-radius: 4px; border-left: 4px solid var(--accent-red);">
-                                <h4>Credit Card Outstanding</h4>
-                                <p style="font-size: 1.4rem; font-weight: bold; color: var(--accent-red);">&#36;1,220.50</p>
-                            </div>
-                        </div>
-                    `;
-                    break;
+        function selectModule(moduleName) {
+            const panel = document.getElementById('mainDynamicContent');
+            switch(moduleName) {
                 case 'accounts':
-                    container.innerHTML = `
-                        <h2>Accounts Summary</h2>
+                    panel.innerHTML = `
+                        <h3>Accounts Overview</h3>
                         <table>
-                            <thead>
-                                <tr><th>Account No</th><th>Account Type</th><th>Branch</th><th>Available Balance</th><th>Status</th></tr>
-                            </thead>
+                            <thead><tr><th>Account No</th><th>Type</th><th>Balance</th><th>Status</th></tr></thead>
                             <tbody>
-                                <tr><td>****1092</td><td>Savings Account</td><td>Main Street</td><td>&#36;14,550.00</td><td>Active</td></tr>
-                                <tr><td>****4421</td><td>Current Account</td><td>Downtown</td><td>&#36;3,220.50</td><td>Active</td></tr>
+                                <tr><td>****1092</td><td>Savings</td><td>$14,550.00</td><td>Active</td></tr>
+                                <tr><td>****4421</td><td>Current</td><td>$3,220.50</td><td>Active</td></tr>
                             </tbody>
-                        </table>
-                    `;
+                        </table>`;
                     break;
                 case 'transfer':
-                    container.innerHTML = `
-                        <h2>Funds Transfer (IMPS / NEFT)</h2>
-                        <form id="transferForm" onsubmit="executeTransfer(event)">
-                            <div class="form-group">
-                                <label>From Account:</label>
-                                <select id="fromAcc">
-                                    <option value="Savings">Savings Account (****1092) - &#36;14,550.00</option>
-                                    <option value="Current">Current Account (****4421) - &#36;3,220.50</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Beneficiary Account Number:</label>
-                                <input type="text" id="benAcc" placeholder="Enter 10-digit account number" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Transfer Amount (&#36;):</label>
-                                <input type="number" id="transferAmt" min="1" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Remarks:</label>
-                                <input type="text" id="remarks" placeholder="e.g. Rent, Utilities">
-                            </div>
-                            <button type="submit" class="btn-submit">Proceed to Transfer</button>
-                        </form>
-                        <div id="transferOutput" class="result-box" style="display:none;"></div>
-                    `;
+                    panel.innerHTML = `
+                        <h3>Fund Transfer</h3>
+                        <form onsubmit="alert('Transfer Executed Successfully!'); event.preventDefault();">
+                            <div class="form-group"><label>From Account</label><select><option>Savings (****1092)</option><option>Current (****4421)</option></select></div>
+                            <div class="form-group"><label>Beneficiary Account</label><input type="text" placeholder="Enter account number" required></div>
+                            <div class="form-group"><label>Amount ($)</label><input type="number" min="1" required></div>
+                            <button type="submit" class="btn-action">Transfer Now</button>
+                        </form>`;
                     break;
                 case 'loans':
-                    container.innerHTML = `
-                        <h2>Loan Eligibility & EMI Calculator</h2>
-                        <div class="form-group">
-                            <label>Loan Amount (&#36;):</label>
-                            <input type="number" id="loanAmt" value="25000">
-                        </div>
-                        <div class="form-group">
-                            <label>Interest Rate (% P.A.):</label>
-                            <input type="number" id="interest" value="7.5" step="0.1">
-                        </div>
-                        <div class="form-group">
-                            <label>Loan Tenure (Years):</label>
-                            <input type="number" id="tenure" value="5">
-                        </div>
-                        <button onclick="calculateEMI()" class="btn-submit">Calculate EMI</button>
-                        <div id="loanOutput" class="result-box" style="display:none;"></div>
-                    `;
-                    break;
-                case 'profile':
-                    container.innerHTML = `
-                        <h2>Customer Profile & Contact Info</h2>
-                        <form id="profileForm" onsubmit="updateProfile(event)">
-                            <div class="form-group">
-                                <label>First Name:</label>
-                                <input type="text" id="p_fname" value="Gregory" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Last Name:</label>
-                                <input type="text" id="p_lname" value="Amirthanathan" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Registered Email:</label>
-                                <input type="email" id="p_email" value="gregory@automiz.demo" required>
-                                <span id="emailErr" class="error-text"></span>
-                            </div>
-                            <div class="form-group">
-                                <label>Mobile Number:</label>
-                                <input type="tel" id="p_phone" pattern="[0-9]{10}" value="9876543210" required>
-                                <span id="phoneErr" class="error-text"></span>
-                            </div>
-                            <button type="submit" class="btn-submit">Update Details</button>
-                        </form>
-                        <div id="profileOutput" class="result-box" style="display:none;"></div>
-                    `;
+                    panel.innerHTML = `
+                        <h3>Loan EMI Calculator</h3>
+                        <div class="form-group"><label>Loan Amount ($)</label><input type="number" id="lamt" value="20000"></div>
+                        <div class="form-group"><label>Interest Rate (%)</label><input type="number" id="lrate" value="7.5" step="0.1"></div>
+                        <div class="form-group"><label>Tenure (Years)</label><input type="number" id="lten" value="3"></div>
+                        <button onclick="calcLoan()" class="btn-action">Calculate EMI</button>
+                        <p id="loanRes" style="margin-top:10px; font-weight:bold; color:var(--hdfc-blue);"></p>`;
                     break;
                 default:
-                    container.innerHTML = `<h2>Welcome</h2><p>Please select an option from the left menu.</p>`;
+                    panel.innerHTML = `<h3>Welcome</h3><p>Select a service below or use the top menu to navigate.</p>`;
             }
         }
 
-        function executeTransfer(e) {
-            e.preventDefault();
-            const acc = document.getElementById('benAcc').value;
-            const amt = document.getElementById('transferAmt').value;
-            const out = document.getElementById('transferOutput');
-            out.style.display = 'block';
-            out.innerHTML = `<strong>Success!</strong> Successfully transferred &#36;${amt} to account number ${acc}. Reference ID: TXN${Math.floor(Math.random()*100000000)}.`;
-        }
-
-        function calculateEMI() {
-            const p = parseFloat(document.getElementById('loanAmt').value);
-            const r = parseFloat(document.getElementById('interest').value) / 12 / 100;
-            const n = parseFloat(document.getElementById('tenure').value) * 12;
+        function calcLoan() {
+            const p = parseFloat(document.getElementById('lamt').value);
+            const r = parseFloat(document.getElementById('lrate').value) / 12 / 100;
+            const n = parseFloat(document.getElementById('lten').value) * 12;
             const emi = (p * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
-            
-            const out = document.getElementById('loanOutput');
-            out.style.display = 'block';
-            out.innerHTML = `<strong>Calculation Result:</strong><br>Monthly EMI: &#36;${emi.toFixed(2)}<br>Total Repayment: &#36;${(emi * n).toFixed(2)}`;
-        }
-
-        function updateProfile(e) {
-            e.preventDefault();
-            document.getElementById('emailErr').textContent = '';
-            document.getElementById('phoneErr').textContent = '';
-            
-            const email = document.getElementById('p_email').value;
-            const phone = document.getElementById('p_phone').value;
-            
-            let valid = true;
-            if(!email.includes('@')) {
-                document.getElementById('emailErr').textContent = 'Invalid email format.';
-                valid = false;
-            }
-            if(phone.length !== 10) {
-                document.getElementById('phoneErr').textContent = 'Phone number must be exactly 10 digits.';
-                valid = false;
-            }
-
-            if(valid) {
-                const out = document.getElementById('profileOutput');
-                out.style.display = 'block';
-                out.innerHTML = `<strong>Profile Updated Successfully!</strong> Changes saved for ${document.getElementById('p_fname').value} ${document.getElementById('p_lname').value}.`;
-            }
+            document.getElementById('loanRes').innerHTML = `Monthly EMI: $${emi.toFixed(2)}`;
         }
     </script>
 </head>
 <body>
 
-    <!-- Top Navigation Header -->
+    <!-- Top Header -->
     <header>
-        <div class="logo-area">
-            <h1>Automiz NetBanking</h1>
+        <div class="header-left">
+            <div class="logo-box">AUTOMIZ BANK</div>
+            <div class="search-bar">
+                <input type="text" placeholder="Search service, e.g. Update Email ID">
+            </div>
         </div>
-        <div class="user-info">
-            Welcome, <span>Gregory Vincent</span><br>
-            <small>Last Login: Today</small>
+        <div class="header-right">
+            <span>Services & Support</span>
+            <span>🔔 Notifications</span>
+            <span>👤 <strong>Gregory Vincent</strong></span>
         </div>
     </header>
 
-    <!-- Main Section -->
-    <div class="main-container">
-        <!-- Sidebar Navigation -->
-        <sidebar>
-            <div class="menu-title">Quick Menu</div>
-            <button onclick="loadModule('dashboard')">Dashboard</button>
-            <button onclick="loadModule('accounts')">Accounts Summary</button>
-            <button onclick="loadModule('transfer')">Funds Transfer</button>
-            <button onclick="loadModule('loans')">Loan Calculator</button>
-            <button onclick="loadModule('profile')">Profile & Settings</button>
-        </sidebar>
+    <!-- Sub Navigation Tabs -->
+    <div class="sub-nav">
+        <button class="active" onclick="selectModule('home')">Home</button>
+        <button onclick="selectModule('accounts')">Accounts</button>
+        <button onclick="selectModule('transfer')">Send Money</button>
+        <button onclick="selectModule('loans')">Loans</button>
+        <button onclick="alert('Card management module selected.')">Cards</button>
+        <button onclick="alert('FD/RD module selected.')">FD/RD</button>
+        <button onclick="alert('Investments module selected.')">Invest</button>
+    </div>
 
-        <!-- Dynamic Content Panel -->
-        <div class="content">
-            <div id="workspace">
-                <h2>Welcome to NetBanking Portal</h2>
-                <p>Select a module from the left menu to view accounts, execute transfers, check loan options, or manage your profile.</p>
+    <!-- Banner Section -->
+    <div class="banner">
+        <div>
+            <h2>Services & Support</h2>
+            <p>Manage your accounts, request statements, and handle banking operations securely.</p>
+        </div>
+        <button class="banner-btn" onclick="alert('Tracking requests...')">Track Raised Requests ▼</button>
+    </div>
+
+    <!-- Main Workspace -->
+    <div class="container">
+        <!-- Left Side Main Services -->
+        <div>
+            <div class="card-panel">
+                <h3>All Banking Services</h3>
+                
+                <!-- Dynamic Interactive Workspace Area -->
+                <div id="mainDynamicContent" class="dynamic-view">
+                    <h3>Welcome to Automiz Portal</h3>
+                    <p>Select any category below or from the top navigation to view operational banking features.</p>
+                </div>
+
+                <!-- Accordion Category 1 -->
+                <div class="service-section">
+                    <div class="service-header" onclick="selectModule('accounts')">
+                        <span>💳 Accounts & Statements</span>
+                        <span>⌄</span>
+                    </div>
+                    <div class="service-links">
+                        <a href="#" onclick="selectModule('accounts')">Manage Account Nominee</a>
+                        <a href="#" onclick="selectModule('accounts')">Manage e-Statement</a>
+                        <a href="#" onclick="selectModule('accounts')">Download Interest Certificate</a>
+                        <a href="#" onclick="selectModule('accounts')">Safe Deposit Locker</a>
+                    </div>
+                </div>
+
+                <!-- Accordion Category 2 -->
+                <div class="service-section">
+                    <div class="service-header" onclick="selectModule('transfer')">
+                        <span>💸 Send Money & Payees</span>
+                        <span>⌄</span>
+                    </div>
+                    <div class="service-links">
+                        <a href="#" onclick="selectModule('transfer')">Own Account Transfer</a>
+                        <a href="#" onclick="selectModule('transfer')">Send Money to Payee</a>
+                        <a href="#" onclick="selectModule('transfer')">Customise Transfer Limit</a>
+                        <a href="#" onclick="selectModule('transfer')">Manage Beneficiary</a>
+                    </div>
+                </div>
+
+                <!-- Accordion Category 3 -->
+                <div class="service-section">
+                    <div class="service-header" onclick="selectModule('loans')">
+                        <span>📈 Loans & Calculators</span>
+                        <span>⌄</span>
+                    </div>
+                    <div class="service-links">
+                        <a href="#" onclick="selectModule('loans')">Loan Eligibility Calculator</a>
+                        <a href="#" onclick="selectModule('loans')">View Active Loans</a>
+                        <a href="#" onclick="selectModule('loans')">Pre-approved Personal Loan</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side Quick Links -->
+        <div>
+            <div class="card-panel">
+                <h3>Quick Links</h3>
+                <ul class="quick-links-list">
+                    <li onclick="alert('Opening Do Not Call registry...')">Do Not Call <span>›</span></li>
+                    <li onclick="alert('Opening live support chat...')">Message Us <span>›</span></li>
+                    <li onclick="alert('Locating nearest branches...')">Branch Locator <span>›</span></li>
+                    <li onclick="alert('Locating ATMs near you...')">ATMs near me <span>›</span></li>
+                    <li onclick="alert('Opening forms center...')">Forms Centre <span>›</span></li>
+                    <li onclick="alert('Opening bug report form...')">Report an issue/bug <span>›</span></li>
+                </ul>
+            </div>
+
+            <!-- Promo Box -->
+            <div style="background: linear-gradient(135deg, #43cea2, #185a9d); color: white; padding: 20px; border-radius: 8px;">
+                <h4 style="margin-top:0;">Automiz Bank Reward</h4>
+                <p style="font-size: 0.9rem;">Get instant approval on loans and zero balance account maintenance benefits.</p>
             </div>
         </div>
     </div>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 Automiz Banking Corporation. Secure 256-bit SSL Encryption Enabled.</p>
-    </footer>
 
 </body>
 </html>

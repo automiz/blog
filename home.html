@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Automiz Bank - Services & Support</title>
+    <title>Automiz Bank - Comprehensive NetBanking Portal</title>
     <style>
         :root {
             --hdfc-blue: #004c8f;
@@ -20,7 +20,7 @@
             background-color: var(--bg-body);
             color: var(--text-main);
         }
-        /* Top Navigation Header */
+        /* Top Header */
         header {
             background-color: var(--hdfc-blue);
             color: white;
@@ -50,7 +50,7 @@
             border-radius: 4px;
             display: flex;
             align-items: center;
-            width: 320px;
+            width: 300px;
         }
         .search-bar input {
             border: none;
@@ -65,12 +65,12 @@
             font-size: 0.9rem;
         }
         
-        /* Sub Header Nav */
+        /* Sub Navigation Tabs */
         .sub-nav {
             background-color: var(--hdfc-dark-blue);
             color: white;
             display: flex;
-            gap: 25px;
+            gap: 15px;
             padding: 0 25px;
             overflow-x: auto;
         }
@@ -78,10 +78,11 @@
             background: none;
             border: none;
             color: #d0e1f9;
-            padding: 12px 5px;
+            padding: 12px 10px;
             cursor: pointer;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             border-bottom: 3px solid transparent;
+            white-space: nowrap;
         }
         .sub-nav button:hover, .sub-nav button.active {
             color: white;
@@ -92,40 +93,26 @@
         .banner {
             background: linear-gradient(135deg, var(--hdfc-dark-blue), var(--hdfc-blue));
             color: white;
-            padding: 30px 25px;
+            padding: 25px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
         .banner h2 {
             margin: 0 0 5px 0;
-            font-size: 1.8rem;
-        }
-        .banner-btn {
-            background-color: var(--hdfc-blue);
-            color: white;
-            border: 1px solid white;
-            padding: 10px 18px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        .banner-btn:hover {
-            background-color: white;
-            color: var(--hdfc-blue);
+            font-size: 1.6rem;
         }
 
-        /* Main Workspace Layout */
+        /* Main Layout Grid */
         .container {
             max-width: 1200px;
-            margin: -25px auto 30px auto;
+            margin: -20px auto 30px auto;
             padding: 0 15px;
             display: grid;
             grid-template-columns: 2fr 1fr;
             gap: 25px;
         }
 
-        /* Card Section Panels */
         .card-panel {
             background: white;
             border-radius: 8px;
@@ -140,33 +127,64 @@
             padding-bottom: 10px;
         }
 
-        /* Service Accordion Grid */
-        .service-section {
-            border-bottom: 1px solid var(--border-color);
-            padding: 15px 0;
+        /* Forms & Inputs */
+        .form-group {
+            margin-bottom: 15px;
         }
-        .service-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
             font-weight: bold;
-            color: var(--hdfc-dark-blue);
+            font-size: 0.85rem;
         }
-        .service-links {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-top: 12px;
-            padding-left: 5px;
-        }
-        .service-links a {
-            color: var(--hdfc-blue);
-            text-decoration: none;
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            box-sizing: border-box;
             font-size: 0.9rem;
         }
-        .service-links a:hover {
-            text-decoration: underline;
+        .btn-action {
+            background-color: var(--hdfc-blue);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .btn-action:hover {
+            background-color: var(--hdfc-dark-blue);
+        }
+        .result-box {
+            margin-top: 15px;
+            padding: 12px;
+            background-color: #eef9f0;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 9px 12px;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+        th {
+            background-color: var(--hdfc-blue);
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9fbfd;
         }
 
         /* Quick Links Sidebar */
@@ -176,116 +194,137 @@
             margin: 0;
         }
         .quick-links-list li {
-            padding: 12px 0;
+            padding: 11px 0;
             border-bottom: 1px solid var(--border-color);
             display: flex;
             justify-content: space-between;
             align-items: center;
             cursor: pointer;
             color: var(--hdfc-blue);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
         .quick-links-list li:hover {
             color: var(--hdfc-dark-blue);
             font-weight: bold;
         }
-
-        /* Dynamic Workspace View Container */
-        .dynamic-view {
-            padding: 15px;
-            background: #fafbfc;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            margin-top: 15px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
-        th, td {
-            border: 1px solid var(--border-color);
-            padding: 8px 12px;
-            text-align: left;
-            font-size: 0.9rem;
-        }
-        th {
-            background-color: var(--hdfc-blue);
-            color: white;
-        }
-        .form-group {
-            margin-bottom: 12px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 4px;
-            font-weight: bold;
-            font-size: 0.85rem;
-        }
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        .btn-action {
-            background-color: var(--hdfc-blue);
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .btn-action:hover {
-            background-color: var(--hdfc-dark-blue);
-        }
     </style>
     <script>
-        function selectModule(moduleName) {
-            const panel = document.getElementById('mainDynamicContent');
-            switch(moduleName) {
+        function loadFeature(featureKey) {
+            const container = document.getElementById('workspace');
+            
+            // Highlight active tab
+            document.querySelectorAll('.sub-nav button').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            switch(featureKey) {
+                case 'dashboard':
+                    container.innerHTML = `
+                        <h3>Account Dashboard Overview</h3>
+                        <p>Welcome back, <strong>Gregory Vincent</strong> | Last Login: Today, 11:15 AM</p>
+                        <div style="display: flex; gap: 15px; margin-top: 20px;">
+                            <div style="flex:1; background:#eef2f7; padding:15px; border-radius:6px; border-left:4px solid var(--hdfc-blue);">
+                                <h4>Savings Balance</h4>
+                                <p style="font-size:1.3rem; font-weight:bold; color:var(--hdfc-blue);">$14,550.00</p>
+                            </div>
+                            <div style="flex:1; background:#eef2f7; padding:15px; border-radius:6px; border-left:4px solid var(--hdfc-red);">
+                                <h4>Credit Card Due</h4>
+                                <p style="font-size:1.3rem; font-weight:bold; color:var(--hdfc-red);">$1,220.50</p>
+                            </div>
+                        </div>`;
+                    break;
                 case 'accounts':
-                    panel.innerHTML = `
-                        <h3>Accounts Overview</h3>
+                    container.innerHTML = `
+                        <h3>Accounts & Statement Services</h3>
                         <table>
-                            <thead><tr><th>Account No</th><th>Type</th><th>Balance</th><th>Status</th></tr></thead>
+                            <thead><tr><th>Account No</th><th>Type</th><th>Branch</th><th>Balance</th><th>Action</th></tr></thead>
                             <tbody>
-                                <tr><td>****1092</td><td>Savings</td><td>$14,550.00</td><td>Active</td></tr>
-                                <tr><td>****4421</td><td>Current</td><td>$3,220.50</td><td>Active</td></tr>
+                                <tr><td>****1092</td><td>Savings</td><td>Main St</td><td>$14,550.00</td><td><button onclick="alert('Downloading statement PDF...')">Download Statement</button></td></tr>
+                                <tr><td>****4421</td><td>Current</td><td>Downtown</td><td>$3,220.50</td><td><button onclick="alert('Downloading statement PDF...')">Download Statement</button></td></tr>
                             </tbody>
                         </table>`;
                     break;
                 case 'transfer':
-                    panel.innerHTML = `
-                        <h3>Fund Transfer</h3>
-                        <form onsubmit="alert('Transfer Executed Successfully!'); event.preventDefault();">
-                            <div class="form-group"><label>From Account</label><select><option>Savings (****1092)</option><option>Current (****4421)</option></select></div>
-                            <div class="form-group"><label>Beneficiary Account</label><input type="text" placeholder="Enter account number" required></div>
-                            <div class="form-group"><label>Amount ($)</label><input type="number" min="1" required></div>
-                            <button type="submit" class="btn-action">Transfer Now</button>
+                    container.innerHTML = `
+                        <h3>Fund Transfer (IMPS / NEFT / RTGS)</h3>
+                        <form onsubmit="handleTransfer(event)">
+                            <div class="form-group"><label>From Account:</label><select><option>Savings (****1092) - $14,550.00</option></select></div>
+                            <div class="form-group"><label>Transfer Type:</label><select><option>IMPS (Instant)</option><option>NEFT</option><option>RTGS</option></select></div>
+                            <div class="form-group"><label>Beneficiary Account Number:</label><input type="text" id="bAcc" placeholder="Enter 10-digit account" required></div>
+                            <div class="form-group"><label>Amount ($):</label><input type="number" id="bAmt" min="1" required></div>
+                            <button type="submit" class="btn-action">Transfer Funds</button>
+                        </form>
+                        <div id="transferMsg" class="result-box" style="display:none;"></div>`;
+                    break;
+                case 'cards':
+                    container.innerHTML = `
+                        <h3>Credit & Debit Card Management</h3>
+                        <table>
+                            <thead><tr><th>Card Number</th><th>Type</th><th>Status</th><th>Action</th></tr></thead>
+                            <tbody>
+                                <tr><td>****-****-****-8812</td><td>Visa Platinum Credit</td><td><span style="color:green; font-weight:bold;">Active</span></td><td><button onclick="alert('Card temporarily locked.')">Lock Card</button></td></tr>
+                                <tr><td>****-****-****-3310</td><td>RuPay Debit</td><td><span style="color:green; font-weight:bold;">Active</span></td><td><button onclick="alert('Card temporarily locked.')">Lock Card</button></td></tr>
+                            </tbody>
+                        </table>`;
+                    break;
+                case 'fdrd':
+                    container.innerHTML = `
+                        <h3>Fixed Deposit (FD) & Recurring Deposit (RD)</h3>
+                        <form onsubmit="alert('Fixed Deposit opened successfully!'); event.preventDefault();">
+                            <div class="form-group"><label>Deposit Amount ($):</label><input type="number" value="5000" required></div>
+                            <div class="form-group"><label>Tenure (Months):</label><input type="number" value="12" required></div>
+                            <div class="form-group"><label>Interest Payout:</label><select><option>On Maturity</option><option>Monthly Payout</option></select></div>
+                            <button type="submit" class="btn-action">Open FD Instantly</button>
+                        </form>`;
+                    break;
+                case 'bills':
+                    container.innerHTML = `
+                        <h3>Bill Payments & Utility Recharges</h3>
+                        <form onsubmit="alert('Bill paid successfully!'); event.preventDefault();">
+                            <div class="form-group"><label>Biller Category:</label><select><option>Electricity</option><option>Mobile Postpaid</option><option>Broadband</option><option>DTH</option></select></div>
+                            <div class="form-group"><label>Consumer / Mobile Number:</label><input type="text" placeholder="Enter number/ID" required></div>
+                            <div class="form-group"><label>Amount ($):</label><input type="number" min="1" required></div>
+                            <button type="submit" class="btn-action">Pay Bill Now</button>
                         </form>`;
                     break;
                 case 'loans':
-                    panel.innerHTML = `
-                        <h3>Loan EMI Calculator</h3>
-                        <div class="form-group"><label>Loan Amount ($)</label><input type="number" id="lamt" value="20000"></div>
-                        <div class="form-group"><label>Interest Rate (%)</label><input type="number" id="lrate" value="7.5" step="0.1"></div>
-                        <div class="form-group"><label>Tenure (Years)</label><input type="number" id="lten" value="3"></div>
-                        <button onclick="calcLoan()" class="btn-action">Calculate EMI</button>
-                        <p id="loanRes" style="margin-top:10px; font-weight:bold; color:var(--hdfc-blue);"></p>`;
+                    container.innerHTML = `
+                        <h3>Loan Eligibility & EMI Calculator</h3>
+                        <div class="form-group"><label>Loan Amount ($):</label><input type="number" id="lAmt" value="25000"></div>
+                        <div class="form-group"><label>Interest Rate (% P.A.):</label><input type="number" id="lRate" value="8.5" step="0.1"></div>
+                        <div class="form-group"><label>Tenure (Years):</label><input type="number" id="lTen" value="4"></div>
+                        <button onclick="calculateEMI()" class="btn-action">Calculate EMI</button>
+                        <div id="loanRes" class="result-box" style="display:none;"></div>`;
                     break;
-                default:
-                    panel.innerHTML = `<h3>Welcome</h3><p>Select a service below or use the top menu to navigate.</p>`;
+                case 'profile':
+                    container.innerHTML = `
+                        <h3>Profile & Security Settings</h3>
+                        <form onsubmit="alert('Profile details updated!'); event.preventDefault();">
+                            <div class="form-group"><label>Registered Email:</label><input type="email" value="gregory@automiz.demo"></div>
+                            <div class="form-group"><label>Mobile Number:</label><input type="tel" value="9876543210"></div>
+                            <div class="form-group"><label>Address:</label><input type="text" value="123 Tech Park, Financial District"></div>
+                            <button type="submit" class="btn-action">Update Information</button>
+                        </form>`;
+                    break;
             }
         }
 
-        function calcLoan() {
-            const p = parseFloat(document.getElementById('lamt').value);
-            const r = parseFloat(document.getElementById('lrate').value) / 12 / 100;
-            const n = parseFloat(document.getElementById('lten').value) * 12;
+        function handleTransfer(e) {
+            e.preventDefault();
+            const acc = document.getElementById('bAcc').value;
+            const amt = document.getElementById('bAmt').value;
+            const msg = document.getElementById('transferMsg');
+            msg.style.display = 'block';
+            msg.innerHTML = `<strong>Transaction Successful!</strong> Transferred $${amt} to account ${acc}. Ref ID: TXN${Math.floor(Math.random()*100000000)}.`;
+        }
+
+        function calculateEMI() {
+            const p = parseFloat(document.getElementById('lAmt').value);
+            const r = parseFloat(document.getElementById('lRate').value) / 12 / 100;
+            const n = parseFloat(document.getElementById('lTen').value) * 12;
             const emi = (p * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
-            document.getElementById('loanRes').innerHTML = `Monthly EMI: $${emi.toFixed(2)}`;
+            const res = document.getElementById('loanRes');
+            res.style.display = 'block';
+            res.innerHTML = `<strong>Estimated Monthly EMI:</strong> $${emi.toFixed(2)}<br><strong>Total Payment:</strong> $${(emi * n).toFixed(2)}`;
         }
     </script>
 </head>
@@ -306,100 +345,57 @@
         </div>
     </header>
 
-    <!-- Sub Navigation Tabs -->
+    <!-- Sub Navigation Tabs (Core Banking Modules) -->
     <div class="sub-nav">
-        <button class="active" onclick="selectModule('home')">Home</button>
-        <button onclick="selectModule('accounts')">Accounts</button>
-        <button onclick="selectModule('transfer')">Send Money</button>
-        <button onclick="selectModule('loans')">Loans</button>
-        <button onclick="alert('Card management module selected.')">Cards</button>
-        <button onclick="alert('FD/RD module selected.')">FD/RD</button>
-        <button onclick="alert('Investments module selected.')">Invest</button>
+        <button class="active" onclick="loadFeature('dashboard')">Dashboard</button>
+        <button onclick="loadFeature('accounts')">Accounts</button>
+        <button onclick="loadFeature('transfer')">Send Money</button>
+        <button onclick="loadFeature('cards')">Cards</button>
+        <button onclick="loadFeature('fdrd')">FD / RD</button>
+        <button onclick="loadFeature('bills')">Bills & Recharges</button>
+        <button onclick="loadFeature('loans')">Loans</button>
+        <button onclick="loadFeature('profile')">Profile & Settings</button>
     </div>
 
-    <!-- Banner Section -->
+    <!-- Banner -->
     <div class="banner">
         <div>
-            <h2>Services & Support</h2>
-            <p>Manage your accounts, request statements, and handle banking operations securely.</p>
+            <h2>Internet Banking Portal</h2>
+            <p>Access your accounts, transfer funds, pay bills, and manage financial services securely.</p>
         </div>
-        <button class="banner-btn" onclick="alert('Tracking requests...')">Track Raised Requests ▼</button>
     </div>
 
-    <!-- Main Workspace -->
+    <!-- Main Workspace Container -->
     <div class="container">
-        <!-- Left Side Main Services -->
-        <div>
-            <div class="card-panel">
-                <h3>All Banking Services</h3>
-                
-                <!-- Dynamic Interactive Workspace Area -->
-                <div id="mainDynamicContent" class="dynamic-view">
-                    <h3>Welcome to Automiz Portal</h3>
-                    <p>Select any category below or from the top navigation to view operational banking features.</p>
-                </div>
-
-                <!-- Accordion Category 1 -->
-                <div class="service-section">
-                    <div class="service-header" onclick="selectModule('accounts')">
-                        <span>💳 Accounts & Statements</span>
-                        <span>⌄</span>
+        <!-- Dynamic Content Display Panel -->
+        <div class="card-panel">
+            <div id="workspace">
+                <h3>Account Dashboard Overview</h3>
+                <p>Welcome back, <strong>Gregory Vincent</strong> | Last Login: Today, 11:15 AM</p>
+                <div style="display: flex; gap: 15px; margin-top: 20px;">
+                    <div style="flex:1; background:#eef2f7; padding:15px; border-radius:6px; border-left:4px solid var(--hdfc-blue);">
+                        <h4>Savings Balance</h4>
+                        <p style="font-size:1.3rem; font-weight:bold; color:var(--hdfc-blue);">$14,550.00</p>
                     </div>
-                    <div class="service-links">
-                        <a href="#" onclick="selectModule('accounts')">Manage Account Nominee</a>
-                        <a href="#" onclick="selectModule('accounts')">Manage e-Statement</a>
-                        <a href="#" onclick="selectModule('accounts')">Download Interest Certificate</a>
-                        <a href="#" onclick="selectModule('accounts')">Safe Deposit Locker</a>
-                    </div>
-                </div>
-
-                <!-- Accordion Category 2 -->
-                <div class="service-section">
-                    <div class="service-header" onclick="selectModule('transfer')">
-                        <span>💸 Send Money & Payees</span>
-                        <span>⌄</span>
-                    </div>
-                    <div class="service-links">
-                        <a href="#" onclick="selectModule('transfer')">Own Account Transfer</a>
-                        <a href="#" onclick="selectModule('transfer')">Send Money to Payee</a>
-                        <a href="#" onclick="selectModule('transfer')">Customise Transfer Limit</a>
-                        <a href="#" onclick="selectModule('transfer')">Manage Beneficiary</a>
-                    </div>
-                </div>
-
-                <!-- Accordion Category 3 -->
-                <div class="service-section">
-                    <div class="service-header" onclick="selectModule('loans')">
-                        <span>📈 Loans & Calculators</span>
-                        <span>⌄</span>
-                    </div>
-                    <div class="service-links">
-                        <a href="#" onclick="selectModule('loans')">Loan Eligibility Calculator</a>
-                        <a href="#" onclick="selectModule('loans')">View Active Loans</a>
-                        <a href="#" onclick="selectModule('loans')">Pre-approved Personal Loan</a>
+                    <div style="flex:1; background:#eef2f7; padding:15px; border-radius:6px; border-left:4px solid var(--hdfc-red);">
+                        <h4>Credit Card Due</h4>
+                        <p style="font-size:1.3rem; font-weight:bold; color:var(--hdfc-red);">$1,220.50</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Right Side Quick Links -->
+        <!-- Quick Links Sidebar -->
         <div>
             <div class="card-panel">
                 <h3>Quick Links</h3>
                 <ul class="quick-links-list">
-                    <li onclick="alert('Opening Do Not Call registry...')">Do Not Call <span>›</span></li>
-                    <li onclick="alert('Opening live support chat...')">Message Us <span>›</span></li>
-                    <li onclick="alert('Locating nearest branches...')">Branch Locator <span>›</span></li>
-                    <li onclick="alert('Locating ATMs near you...')">ATMs near me <span>›</span></li>
+                    <li onclick="alert('Opening support chat...')">Message Us <span>›</span></li>
+                    <li onclick="alert('Locating branch...')">Branch Locator <span>›</span></li>
+                    <li onclick="alert('Locating ATM...')">ATMs near me <span>›</span></li>
                     <li onclick="alert('Opening forms center...')">Forms Centre <span>›</span></li>
-                    <li onclick="alert('Opening bug report form...')">Report an issue/bug <span>›</span></li>
+                    <li onclick="alert('Opening feedback form...')">Report an issue <span>›</span></li>
                 </ul>
-            </div>
-
-            <!-- Promo Box -->
-            <div style="background: linear-gradient(135deg, #43cea2, #185a9d); color: white; padding: 20px; border-radius: 8px;">
-                <h4 style="margin-top:0;">Automiz Bank Reward</h4>
-                <p style="font-size: 0.9rem;">Get instant approval on loans and zero balance account maintenance benefits.</p>
             </div>
         </div>
     </div>

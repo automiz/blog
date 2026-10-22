@@ -20,7 +20,6 @@
             background-color: var(--bg-body);
             color: var(--text-main);
         }
-        /* Top Header */
         header {
             background-color: var(--hdfc-blue);
             color: white;
@@ -41,7 +40,6 @@
             padding: 6px 12px;
             border-radius: 4px;
             font-size: 1rem;
-            letter-spacing: 0.5px;
             border-left: 4px solid var(--hdfc-red);
         }
         .search-bar {
@@ -64,8 +62,6 @@
             gap: 20px;
             font-size: 0.9rem;
         }
-        
-        /* Sub Navigation Tabs */
         .sub-nav {
             background-color: var(--hdfc-dark-blue);
             color: white;
@@ -88,22 +84,15 @@
             color: white;
             border-bottom: 3px solid white;
         }
-
-        /* Banner Header */
         .banner {
             background: linear-gradient(135deg, var(--hdfc-dark-blue), var(--hdfc-blue));
             color: white;
             padding: 25px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
         .banner h2 {
             margin: 0 0 5px 0;
             font-size: 1.6rem;
         }
-
-        /* Main Layout Grid */
         .container {
             max-width: 1200px;
             margin: -20px auto 30px auto;
@@ -112,7 +101,6 @@
             grid-template-columns: 2fr 1fr;
             gap: 25px;
         }
-
         .card-panel {
             background: white;
             border-radius: 8px;
@@ -126,8 +114,6 @@
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 10px;
         }
-
-        /* Forms & Inputs */
         .form-group {
             margin-bottom: 15px;
         }
@@ -166,8 +152,6 @@
             border-radius: 4px;
             font-size: 0.9rem;
         }
-
-        /* Tables */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -186,8 +170,6 @@
         tr:nth-child(even) {
             background-color: #f9fbfd;
         }
-
-        /* Quick Links Sidebar */
         .quick-links-list {
             list-style: none;
             padding: 0;
@@ -211,8 +193,6 @@
     <script>
         function loadFeature(featureKey) {
             const container = document.getElementById('workspace');
-            
-            // Highlight active tab
             document.querySelectorAll('.sub-nav button').forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
 
@@ -330,7 +310,6 @@
 </head>
 <body>
 
-    <!-- Top Header -->
     <header>
         <div class="header-left">
             <div class="logo-box">AUTOMIZ BANK</div>
@@ -345,7 +324,6 @@
         </div>
     </header>
 
-    <!-- Sub Navigation Tabs (Core Banking Modules) -->
     <div class="sub-nav">
         <button class="active" onclick="loadFeature('dashboard')">Dashboard</button>
         <button onclick="loadFeature('accounts')">Accounts</button>
@@ -357,17 +335,14 @@
         <button onclick="loadFeature('profile')">Profile & Settings</button>
     </div>
 
-    <!-- Banner -->
     <div class="banner">
-        <div>
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 15px;">
             <h2>Internet Banking Portal</h2>
             <p>Access your accounts, transfer funds, pay bills, and manage financial services securely.</p>
         </div>
     </div>
 
-    <!-- Main Workspace Container -->
     <div class="container">
-        <!-- Dynamic Content Display Panel -->
         <div class="card-panel">
             <div id="workspace">
                 <h3>Account Dashboard Overview</h3>
@@ -385,7 +360,6 @@
             </div>
         </div>
 
-        <!-- Quick Links Sidebar -->
         <div>
             <div class="card-panel">
                 <h3>Quick Links</h3>
